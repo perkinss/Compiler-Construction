@@ -1,0 +1,45 @@
+// Parser Conflict Information for grammar file "CbParser.y - 28/05/2014 12:47:17 PM"
+
+Shift/Reduce conflict on symbol "Kwd_public", parser will shift
+ Reduce 16:	FieldDeclList -> /* empty */
+ Shift "Kwd_public":	State-9 -> State-28
+  Items for From-state State 9
+    7 ClassDecl: Kwd_class Ident '{' DeclList . '}' 
+    8 DeclList: DeclList . ConstDecl 
+    9 DeclList: DeclList . MethodDecl 
+    10 DeclList: DeclList . FieldDeclList 
+  Items for Next-state State 28
+    12 ConstDecl: Kwd_public . Kwd_const Type Ident '=' InitVal ';' 
+    20 MethodDecl: Kwd_public . Kwd_static Kwd_void Ident '(' OptFormals ')' Block 
+
+Shift/Reduce conflict on symbol "'}'", parser will shift
+ Reduce 16:	FieldDeclList -> /* empty */
+ Shift "'}'":	State-9 -> State-10
+  Items for From-state State 9
+    7 ClassDecl: Kwd_class Ident '{' DeclList . '}' 
+    8 DeclList: DeclList . ConstDecl 
+    9 DeclList: DeclList . MethodDecl 
+    10 DeclList: DeclList . FieldDeclList 
+  Items for Next-state State 10
+    7 ClassDecl: Kwd_class Ident '{' DeclList '}' .
+	-lookahead: Kwd_class, EOF
+
+Shift/Reduce conflict on symbol "Kwd_public", parser will shift
+ Reduce 10:	DeclList -> DeclList, FieldDeclList
+ Shift "Kwd_public":	State-13 -> State-15
+  Items for From-state State 13
+    10 DeclList: DeclList FieldDeclList .
+	-lookahead: '}', Kwd_public
+    15 FieldDeclList: FieldDeclList . FieldDecl 
+  Items for Next-state State 15
+    17 FieldDecl: Kwd_public . Type IdentList ';' 
+
+Shift/Reduce conflict on symbol "Kwd_else", parser will shift
+ Reduce 47:	OptElsePart -> /* empty */
+ Shift "Kwd_else":	State-131 -> State-133
+  Items for From-state State 131
+    35 Statement: Kwd_if '(' Expr ')' Statement . OptElsePart 
+  Items for Next-state State 133
+    46 OptElsePart: Kwd_else . Statement 
+
+// End conflict information for parser

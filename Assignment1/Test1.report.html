@@ -1,0 +1,598 @@
+<html><head><title>Test1.y</title></head>
+<body bgcolor="white">
+<hr><pre>
+<b>Grammar and Diagnosis Test1.y - 28/05/2014 8:58:57 PM</b>
+
+<a name="prod1">    1</a> $accept: Program EOF
+             ;
+
+<a name="prod2">    2</a> Program: DeclList
+             ;
+
+<a name="prod3">    3</a> DeclList: DeclList ConstDecl
+<a name="prod4">    4</a>         | DeclList MethodDecl
+<a name="prod5">    5</a>         | DeclList FieldDeclList
+<a name="prod6">    6</a>         | /* empty */
+              ;
+
+<a name="prod7">    7</a> ConstDecl: Kwd_public Kwd_const Type Ident '=' InitVal ';'
+               ;
+
+<a name="prod8">    8</a> FieldDeclList: FieldDeclList FieldDecl
+<a name="prod9">    9</a>              | /* empty */
+                   ;
+
+<a name="prod10">   10</a> FieldDecl: Kwd_public Type IdentList ';'
+               ;
+
+<a name="prod11">   11</a> IdentList: IdentList ',' Ident
+<a name="prod12">   12</a>          | Ident
+               ;
+
+<a name="prod13">   13</a> MethodDecl: Kwd_public Kwd_static Kwd_void Ident '(' OptFormals ')' 
+                      Block
+                ;
+
+<a name="prod14">   14</a> Type: Kwd_int
+          ;
+
+<a name="prod15">   15</a> OptFormals: Ident
+                ;
+
+<a name="prod16">   16</a> Block: Ident
+           ;
+
+<a name="prod17">   17</a> InitVal: Ident
+             ;
+<b><a name="state0">State</a> <a href="#state0">0</a></b>
+    Shortest prefix: 
+    Shortest path: <a href="#state0">0</a>
+    Predecessors: 
+
+  <b>Kernel Items</b>
+    1 $accept: . Program EOF
+
+  <b>Parser Actions</b>
+    Kwd_public     reduce using <a href="#prod6">rule 6</a> (Erasing DeclList)
+    EOF            reduce using <a href="#prod6">rule 6</a> (Erasing DeclList)
+
+  <b>Transitions</b>
+    Program        go to state <a href="#state1">1</a>
+    DeclList       go to state <a href="#state3">3</a>
+
+
+<b><a name="state1">State</a> <a href="#state1">1</a></b>
+    Shortest prefix: 
+    Shortest path: <a href="#state0">0</a>-><a href="#state1">1</a>
+    Predecessors: <a href="#state0">0</a>
+
+  <b>Kernel Items</b>
+    1 $accept: Program . EOF
+
+  <b>Parser Actions</b>
+    EOF            shift, and go to state <a href="#state2">2</a>
+
+
+
+<b><a name="state2">State</a> <a href="#state2">2</a></b>
+    Shortest prefix: EOF
+    Shortest path: <a href="#state0">0</a>-><a href="#state1">1</a>-><a href="#state2">2</a>
+    Predecessors: <a href="#state1">1</a>
+
+  <b>Kernel Items</b>
+    1 $accept: Program EOF .
+	-lookahead: {  }
+
+  <b>Parser Actions</b>
+    error          reduce using <a href="#prod1">rule 1</a> ($accept)
+    EOF            reduce using <a href="#prod1">rule 1</a> ($accept)
+    '='            reduce using <a href="#prod1">rule 1</a> ($accept)
+    OROR           reduce using <a href="#prod1">rule 1</a> ($accept)
+    ANDAND         reduce using <a href="#prod1">rule 1</a> ($accept)
+    EQEQ           reduce using <a href="#prod1">rule 1</a> ($accept)
+    NOTEQ          reduce using <a href="#prod1">rule 1</a> ($accept)
+    '>'            reduce using <a href="#prod1">rule 1</a> ($accept)
+    GTEQ           reduce using <a href="#prod1">rule 1</a> ($accept)
+    '<'            reduce using <a href="#prod1">rule 1</a> ($accept)
+    LTEQ           reduce using <a href="#prod1">rule 1</a> ($accept)
+    '+'            reduce using <a href="#prod1">rule 1</a> ($accept)
+    '-'            reduce using <a href="#prod1">rule 1</a> ($accept)
+    '*'            reduce using <a href="#prod1">rule 1</a> ($accept)
+    '/'            reduce using <a href="#prod1">rule 1</a> ($accept)
+    '%'            reduce using <a href="#prod1">rule 1</a> ($accept)
+    UMINUS         reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_using      reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_class      reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_public     reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_const      reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_override   reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_static     reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_break      reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_return     reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_else       reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_if         reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_while      reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_void       reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_int        reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_char       reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_string     reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_new        reduce using <a href="#prod1">rule 1</a> ($accept)
+    Kwd_out        reduce using <a href="#prod1">rule 1</a> ($accept)
+    PLUSPLUS       reduce using <a href="#prod1">rule 1</a> ($accept)
+    MINUSMINUS     reduce using <a href="#prod1">rule 1</a> ($accept)
+    Ident          reduce using <a href="#prod1">rule 1</a> ($accept)
+    Number         reduce using <a href="#prod1">rule 1</a> ($accept)
+    StringConst    reduce using <a href="#prod1">rule 1</a> ($accept)
+    ';'            reduce using <a href="#prod1">rule 1</a> ($accept)
+    ','            reduce using <a href="#prod1">rule 1</a> ($accept)
+    '('            reduce using <a href="#prod1">rule 1</a> ($accept)
+    ')'            reduce using <a href="#prod1">rule 1</a> ($accept)
+
+
+
+<b><a name="state3">State</a> <a href="#state3">3</a></b>
+    Shortest prefix: 
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>
+    Predecessors: <a href="#state0">0</a>
+
+  <b>Kernel Items</b>
+    2 Program: DeclList .
+	-lookahead: { EOF }
+    3 DeclList: DeclList . ConstDecl
+    4 DeclList: DeclList . MethodDecl
+    5 DeclList: DeclList . FieldDeclList
+
+    <b>Conflicts in this state</b>
+      Shift/Reduce conflict on symbol "Kwd_public", parser will shift
+       Shift "Kwd_public":	State-3 -> State-16
+       Reduce 9:	FieldDeclList -> /* empty */
+      ---------
+      Reduce/Reduce conflict on symbol "EOF", parser will reduce production 2
+       Reduce 2:	Program -> DeclList
+       Reduce 9:	FieldDeclList -> /* empty */
+      ---------
+
+  <b>Parser Actions</b>
+    Kwd_public     shift, and go to state <a href="#state16">16</a>
+    EOF            reduce using <a href="#prod2">rule 2</a> (Program)
+
+  <b>Transitions</b>
+    ConstDecl      go to state <a href="#state4">4</a>
+    MethodDecl     go to state <a href="#state5">5</a>
+    FieldDeclList  go to state <a href="#state6">6</a>
+
+
+<b><a name="state4">State</a> <a href="#state4">4</a></b>
+    Shortest prefix: ConstDecl
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state4">4</a>
+    Predecessors: <a href="#state3">3</a>
+
+  <b>Kernel Items</b>
+    3 DeclList: DeclList ConstDecl .
+	-lookahead: { Kwd_public, EOF }
+
+  <b>Parser Actions</b>
+    Kwd_public     reduce using <a href="#prod3">rule 3</a> (DeclList)
+    EOF            reduce using <a href="#prod3">rule 3</a> (DeclList)
+
+
+
+<b><a name="state5">State</a> <a href="#state5">5</a></b>
+    Shortest prefix: MethodDecl
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state5">5</a>
+    Predecessors: <a href="#state3">3</a>
+
+  <b>Kernel Items</b>
+    4 DeclList: DeclList MethodDecl .
+	-lookahead: { Kwd_public, EOF }
+
+  <b>Parser Actions</b>
+    Kwd_public     reduce using <a href="#prod4">rule 4</a> (DeclList)
+    EOF            reduce using <a href="#prod4">rule 4</a> (DeclList)
+
+
+
+<b><a name="state6">State</a> <a href="#state6">6</a></b>
+    Shortest prefix: 
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state6">6</a>
+    Predecessors: <a href="#state3">3</a>
+
+  <b>Kernel Items</b>
+    5 DeclList: DeclList FieldDeclList .
+	-lookahead: { Kwd_public, EOF }
+    8 FieldDeclList: FieldDeclList . FieldDecl
+
+    <b>Conflicts in this state</b>
+      Shift/Reduce conflict on symbol "Kwd_public", parser will shift
+       Shift "Kwd_public":	State-6 -> State-8
+       Reduce 5:	DeclList -> DeclList, FieldDeclList
+      ---------
+
+  <b>Parser Actions</b>
+    Kwd_public     shift, and go to state <a href="#state8">8</a>
+    EOF            reduce using <a href="#prod5">rule 5</a> (DeclList)
+
+  <b>Transitions</b>
+    FieldDecl      go to state <a href="#state7">7</a>
+
+
+<b><a name="state7">State</a> <a href="#state7">7</a></b>
+    Shortest prefix: FieldDecl
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state6">6</a>-><a href="#state7">7</a>
+    Predecessors: <a href="#state6">6</a>
+
+  <b>Kernel Items</b>
+    8 FieldDeclList: FieldDeclList FieldDecl .
+	-lookahead: { Kwd_public, EOF }
+
+  <b>Parser Actions</b>
+    Kwd_public     reduce using <a href="#prod8">rule 8</a> (FieldDeclList)
+    EOF            reduce using <a href="#prod8">rule 8</a> (FieldDeclList)
+
+
+
+<b><a name="state8">State</a> <a href="#state8">8</a></b>
+    Shortest prefix: Kwd_public
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state6">6</a>-><a href="#state8">8</a>
+    Predecessors: <a href="#state6">6</a>
+
+  <b>Kernel Items</b>
+    10 FieldDecl: Kwd_public . Type IdentList ';'
+
+  <b>Parser Actions</b>
+    Kwd_int        shift, and go to state <a href="#state15">15</a>
+
+  <b>Transitions</b>
+    Type           go to state <a href="#state9">9</a>
+
+
+<b><a name="state9">State</a> <a href="#state9">9</a></b>
+    Shortest prefix: Kwd_public Type
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state6">6</a>-><a href="#state8">8</a>-><a href="#state9">9</a>
+    Predecessors: <a href="#state8">8</a>
+
+  <b>Kernel Items</b>
+    10 FieldDecl: Kwd_public Type . IdentList ';'
+
+  <b>Parser Actions</b>
+    Ident          shift, and go to state <a href="#state14">14</a>
+
+  <b>Transitions</b>
+    IdentList      go to state <a href="#state10">10</a>
+
+
+<b><a name="state10">State</a> <a href="#state10">10</a></b>
+    Shortest prefix: Kwd_public Type IdentList
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state6">6</a>-><a href="#state8">8</a>-><a href="#state9">9</a>-><a href="#state10">10</a>
+    Predecessors: <a href="#state9">9</a>
+
+  <b>Kernel Items</b>
+    10 FieldDecl: Kwd_public Type IdentList . ';'
+    11 IdentList: IdentList . ',' Ident
+
+  <b>Parser Actions</b>
+    ';'            shift, and go to state <a href="#state11">11</a>
+    ','            shift, and go to state <a href="#state12">12</a>
+
+
+
+<b><a name="state11">State</a> <a href="#state11">11</a></b>
+    Shortest prefix: Kwd_public Type IdentList ';'
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state6">6</a>-><a href="#state8">8</a>-><a href="#state9">9</a>-><a href="#state10">10</a>-><a href="#state11">11</a>
+    Predecessors: <a href="#state10">10</a>
+
+  <b>Kernel Items</b>
+    10 FieldDecl: Kwd_public Type IdentList ';' .
+	-lookahead: { Kwd_public, EOF }
+
+  <b>Parser Actions</b>
+    Kwd_public     reduce using <a href="#prod10">rule 10</a> (FieldDecl)
+    EOF            reduce using <a href="#prod10">rule 10</a> (FieldDecl)
+
+
+
+<b><a name="state12">State</a> <a href="#state12">12</a></b>
+    Shortest prefix: Kwd_public Type IdentList ','
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state6">6</a>-><a href="#state8">8</a>-><a href="#state9">9</a>-><a href="#state10">10</a>-><a href="#state12">12</a>
+    Predecessors: <a href="#state10">10</a>
+
+  <b>Kernel Items</b>
+    11 IdentList: IdentList ',' . Ident
+
+  <b>Parser Actions</b>
+    Ident          shift, and go to state <a href="#state13">13</a>
+
+
+
+<b><a name="state13">State</a> <a href="#state13">13</a></b>
+    Shortest prefix: Kwd_public Type IdentList ',' Ident
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state6">6</a>-><a href="#state8">8</a>-><a href="#state9">9</a>-><a href="#state10">10</a>-><a href="#state12">12</a>-><a href="#state13">13</a>
+    Predecessors: <a href="#state12">12</a>
+
+  <b>Kernel Items</b>
+    11 IdentList: IdentList ',' Ident .
+	-lookahead: { ';', ',' }
+
+  <b>Parser Actions</b>
+    ';'            reduce using <a href="#prod11">rule 11</a> (IdentList)
+    ','            reduce using <a href="#prod11">rule 11</a> (IdentList)
+
+
+
+<b><a name="state14">State</a> <a href="#state14">14</a></b>
+    Shortest prefix: Kwd_public Type Ident
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state6">6</a>-><a href="#state8">8</a>-><a href="#state9">9</a>-><a href="#state14">14</a>
+    Predecessors: <a href="#state9">9</a>
+
+  <b>Kernel Items</b>
+    12 IdentList: Ident .
+	-lookahead: { ';', ',' }
+
+  <b>Parser Actions</b>
+    ';'            reduce using <a href="#prod12">rule 12</a> (IdentList)
+    ','            reduce using <a href="#prod12">rule 12</a> (IdentList)
+
+
+
+<b><a name="state15">State</a> <a href="#state15">15</a></b>
+    Shortest prefix: Kwd_public Kwd_int
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state6">6</a>-><a href="#state8">8</a>-><a href="#state15">15</a>
+    Predecessors: <a href="#state8">8</a>, <a href="#state17">17</a>
+
+  <b>Kernel Items</b>
+    14 Type: Kwd_int .
+	-lookahead: { Ident }
+
+  <b>Parser Actions</b>
+    Ident          reduce using <a href="#prod14">rule 14</a> (Type)
+
+
+
+<b><a name="state16">State</a> <a href="#state16">16</a></b>
+    Shortest prefix: Kwd_public
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>
+    Predecessors: <a href="#state3">3</a>
+
+  <b>Kernel Items</b>
+    7 ConstDecl: Kwd_public . Kwd_const Type Ident '=' InitVal ';'
+    13 MethodDecl: Kwd_public . Kwd_static Kwd_void Ident '(' OptFormals ')' 
+                     Block
+
+  <b>Parser Actions</b>
+    Kwd_const      shift, and go to state <a href="#state17">17</a>
+    Kwd_static     shift, and go to state <a href="#state24">24</a>
+
+
+
+<b><a name="state17">State</a> <a href="#state17">17</a></b>
+    Shortest prefix: Kwd_public Kwd_const
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state17">17</a>
+    Predecessors: <a href="#state16">16</a>
+
+  <b>Kernel Items</b>
+    7 ConstDecl: Kwd_public Kwd_const . Type Ident '=' InitVal ';'
+
+  <b>Parser Actions</b>
+    Kwd_int        shift, and go to state <a href="#state15">15</a>
+
+  <b>Transitions</b>
+    Type           go to state <a href="#state18">18</a>
+
+
+<b><a name="state18">State</a> <a href="#state18">18</a></b>
+    Shortest prefix: Kwd_public Kwd_const Type
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state17">17</a>-><a href="#state18">18</a>
+    Predecessors: <a href="#state17">17</a>
+
+  <b>Kernel Items</b>
+    7 ConstDecl: Kwd_public Kwd_const Type . Ident '=' InitVal ';'
+
+  <b>Parser Actions</b>
+    Ident          shift, and go to state <a href="#state19">19</a>
+
+
+
+<b><a name="state19">State</a> <a href="#state19">19</a></b>
+    Shortest prefix: Kwd_public Kwd_const Type Ident
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state17">17</a>-><a href="#state18">18</a>-><a href="#state19">19</a>
+    Predecessors: <a href="#state18">18</a>
+
+  <b>Kernel Items</b>
+    7 ConstDecl: Kwd_public Kwd_const Type Ident . '=' InitVal ';'
+
+  <b>Parser Actions</b>
+    '='            shift, and go to state <a href="#state20">20</a>
+
+
+
+<b><a name="state20">State</a> <a href="#state20">20</a></b>
+    Shortest prefix: Kwd_public Kwd_const Type Ident '='
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state17">17</a>-><a href="#state18">18</a>-><a href="#state19">19</a>-><a href="#state20">20</a>
+    Predecessors: <a href="#state19">19</a>
+
+  <b>Kernel Items</b>
+    7 ConstDecl: Kwd_public Kwd_const Type Ident '=' . InitVal ';'
+
+  <b>Parser Actions</b>
+    Ident          shift, and go to state <a href="#state23">23</a>
+
+  <b>Transitions</b>
+    InitVal        go to state <a href="#state21">21</a>
+
+
+<b><a name="state21">State</a> <a href="#state21">21</a></b>
+    Shortest prefix: Kwd_public Kwd_const Type Ident '=' InitVal
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state17">17</a>-><a href="#state18">18</a>-><a href="#state19">19</a>-><a href="#state20">20</a>-><a href="#state21">21</a>
+    Predecessors: <a href="#state20">20</a>
+
+  <b>Kernel Items</b>
+    7 ConstDecl: Kwd_public Kwd_const Type Ident '=' InitVal . ';'
+
+  <b>Parser Actions</b>
+    ';'            shift, and go to state <a href="#state22">22</a>
+
+
+
+<b><a name="state22">State</a> <a href="#state22">22</a></b>
+    Shortest prefix: Kwd_public Kwd_const Type Ident '=' InitVal ';'
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state17">17</a>-><a href="#state18">18</a>-><a href="#state19">19</a>-><a href="#state20">20</a>-><a href="#state21">21</a>-><a href="#state22">22</a>
+    Predecessors: <a href="#state21">21</a>
+
+  <b>Kernel Items</b>
+    7 ConstDecl: Kwd_public Kwd_const Type Ident '=' InitVal ';' .
+	-lookahead: { Kwd_public, EOF }
+
+  <b>Parser Actions</b>
+    Kwd_public     reduce using <a href="#prod7">rule 7</a> (ConstDecl)
+    EOF            reduce using <a href="#prod7">rule 7</a> (ConstDecl)
+
+
+
+<b><a name="state23">State</a> <a href="#state23">23</a></b>
+    Shortest prefix: Kwd_public Kwd_const Type Ident '=' Ident
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state17">17</a>-><a href="#state18">18</a>-><a href="#state19">19</a>-><a href="#state20">20</a>-><a href="#state23">23</a>
+    Predecessors: <a href="#state20">20</a>
+
+  <b>Kernel Items</b>
+    17 InitVal: Ident .
+	-lookahead: { ';' }
+
+  <b>Parser Actions</b>
+    ';'            reduce using <a href="#prod17">rule 17</a> (InitVal)
+
+
+
+<b><a name="state24">State</a> <a href="#state24">24</a></b>
+    Shortest prefix: Kwd_public Kwd_static
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state24">24</a>
+    Predecessors: <a href="#state16">16</a>
+
+  <b>Kernel Items</b>
+    13 MethodDecl: Kwd_public Kwd_static . Kwd_void Ident '(' OptFormals ')' 
+                     Block
+
+  <b>Parser Actions</b>
+    Kwd_void       shift, and go to state <a href="#state25">25</a>
+
+
+
+<b><a name="state25">State</a> <a href="#state25">25</a></b>
+    Shortest prefix: Kwd_public Kwd_static Kwd_void
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state24">24</a>-><a href="#state25">25</a>
+    Predecessors: <a href="#state24">24</a>
+
+  <b>Kernel Items</b>
+    13 MethodDecl: Kwd_public Kwd_static Kwd_void . Ident '(' OptFormals ')' 
+                     Block
+
+  <b>Parser Actions</b>
+    Ident          shift, and go to state <a href="#state26">26</a>
+
+
+
+<b><a name="state26">State</a> <a href="#state26">26</a></b>
+    Shortest prefix: Kwd_public Kwd_static Kwd_void Ident
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state24">24</a>-><a href="#state25">25</a>-><a href="#state26">26</a>
+    Predecessors: <a href="#state25">25</a>
+
+  <b>Kernel Items</b>
+    13 MethodDecl: Kwd_public Kwd_static Kwd_void Ident . '(' OptFormals ')' 
+                     Block
+
+  <b>Parser Actions</b>
+    '('            shift, and go to state <a href="#state27">27</a>
+
+
+
+<b><a name="state27">State</a> <a href="#state27">27</a></b>
+    Shortest prefix: Kwd_public Kwd_static Kwd_void Ident '('
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state24">24</a>-><a href="#state25">25</a>-><a href="#state26">26</a>-><a href="#state27">27</a>
+    Predecessors: <a href="#state26">26</a>
+
+  <b>Kernel Items</b>
+    13 MethodDecl: Kwd_public Kwd_static Kwd_void Ident '(' . OptFormals ')' 
+                     Block
+
+  <b>Parser Actions</b>
+    Ident          shift, and go to state <a href="#state32">32</a>
+
+  <b>Transitions</b>
+    OptFormals     go to state <a href="#state28">28</a>
+
+
+<b><a name="state28">State</a> <a href="#state28">28</a></b>
+    Shortest prefix: Kwd_public Kwd_static Kwd_void Ident '(' OptFormals
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state24">24</a>-><a href="#state25">25</a>-><a href="#state26">26</a>-><a href="#state27">27</a>-><a href="#state28">28</a>
+    Predecessors: <a href="#state27">27</a>
+
+  <b>Kernel Items</b>
+    13 MethodDecl: Kwd_public Kwd_static Kwd_void Ident '(' OptFormals . ')' 
+                     Block
+
+  <b>Parser Actions</b>
+    ')'            shift, and go to state <a href="#state29">29</a>
+
+
+
+<b><a name="state29">State</a> <a href="#state29">29</a></b>
+    Shortest prefix: Kwd_public Kwd_static Kwd_void Ident '(' OptFormals ')'
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state24">24</a>-><a href="#state25">25</a>-><a href="#state26">26</a>-><a href="#state27">27</a>-><a href="#state28">28</a>-><a href="#state29">29</a>
+    Predecessors: <a href="#state28">28</a>
+
+  <b>Kernel Items</b>
+    13 MethodDecl: Kwd_public Kwd_static Kwd_void Ident '(' OptFormals ')' . 
+                     Block
+
+  <b>Parser Actions</b>
+    Ident          shift, and go to state <a href="#state31">31</a>
+
+  <b>Transitions</b>
+    Block          go to state <a href="#state30">30</a>
+
+
+<b><a name="state30">State</a> <a href="#state30">30</a></b>
+    Shortest prefix: Kwd_public Kwd_static Kwd_void Ident '(' OptFormals ')' Block
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state24">24</a>-><a href="#state25">25</a>-><a href="#state26">26</a>-><a href="#state27">27</a>-><a href="#state28">28</a>-><a href="#state29">29</a>-><a href="#state30">30</a>
+    Predecessors: <a href="#state29">29</a>
+
+  <b>Kernel Items</b>
+    13 MethodDecl: Kwd_public Kwd_static Kwd_void Ident '(' OptFormals ')' 
+                     Block .
+	-lookahead: { Kwd_public, EOF }
+
+  <b>Parser Actions</b>
+    Kwd_public     reduce using <a href="#prod13">rule 13</a> (MethodDecl)
+    EOF            reduce using <a href="#prod13">rule 13</a> (MethodDecl)
+
+
+
+<b><a name="state31">State</a> <a href="#state31">31</a></b>
+    Shortest prefix: Kwd_public Kwd_static Kwd_void Ident '(' OptFormals ')' Ident
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state24">24</a>-><a href="#state25">25</a>-><a href="#state26">26</a>-><a href="#state27">27</a>-><a href="#state28">28</a>-><a href="#state29">29</a>-><a href="#state31">31</a>
+    Predecessors: <a href="#state29">29</a>
+
+  <b>Kernel Items</b>
+    16 Block: Ident .
+	-lookahead: { Kwd_public, EOF }
+
+  <b>Parser Actions</b>
+    Kwd_public     reduce using <a href="#prod16">rule 16</a> (Block)
+    EOF            reduce using <a href="#prod16">rule 16</a> (Block)
+
+
+
+<b><a name="state32">State</a> <a href="#state32">32</a></b>
+    Shortest prefix: Kwd_public Kwd_static Kwd_void Ident '(' Ident
+    Shortest path: <a href="#state0">0</a>-><a href="#state3">3</a>-><a href="#state16">16</a>-><a href="#state24">24</a>-><a href="#state25">25</a>-><a href="#state26">26</a>-><a href="#state27">27</a>-><a href="#state32">32</a>
+    Predecessors: <a href="#state27">27</a>
+
+  <b>Kernel Items</b>
+    15 OptFormals: Ident .
+	-lookahead: { ')' }
+
+  <b>Parser Actions</b>
+    ')'            reduce using <a href="#prod15">rule 15</a> (OptFormals)
+
+
+
+</pre></hr></body></html>

@@ -1,0 +1,30 @@
+// Parser Conflict Information for grammar file "Test1.y - 28/05/2014 8:58:57 PM"
+
+Shift/Reduce conflict on symbol "Kwd_public", parser will shift
+ Reduce 9:	FieldDeclList -> /* empty */
+ Shift "Kwd_public":	State-3 -> State-16
+  Items for From-state State 3
+    2 Program: DeclList .
+	-lookahead: EOF
+    3 DeclList: DeclList . ConstDecl 
+    4 DeclList: DeclList . MethodDecl 
+    5 DeclList: DeclList . FieldDeclList 
+  Items for Next-state State 16
+    7 ConstDecl: Kwd_public . Kwd_const Type Ident '=' InitVal ';' 
+    13 MethodDecl: Kwd_public . Kwd_static Kwd_void Ident '(' OptFormals ')' Block 
+
+Reduce/Reduce conflict in state 3 on symbol "EOF", parser will reduce production 2
+ Reduce 2:	Program -> DeclList
+ Reduce 9:	FieldDeclList -> /* empty */
+
+Shift/Reduce conflict on symbol "Kwd_public", parser will shift
+ Reduce 5:	DeclList -> DeclList, FieldDeclList
+ Shift "Kwd_public":	State-6 -> State-8
+  Items for From-state State 6
+    5 DeclList: DeclList FieldDeclList .
+	-lookahead: Kwd_public, EOF
+    8 FieldDeclList: FieldDeclList . FieldDecl 
+  Items for Next-state State 8
+    10 FieldDecl: Kwd_public . Type IdentList ';' 
+
+// End conflict information for parser
