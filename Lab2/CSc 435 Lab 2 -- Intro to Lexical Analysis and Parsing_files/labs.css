@@ -1,0 +1,56 @@
+BODY,H1,H2,H3,H4,H5,H6,P,CENTER,TD,TH,UL,DL,DIV {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+BODY,TD {
+}
+H1, H2, H3, H4, H5 {
+	background-color:#F2F2F2;
+	border-bottom:1px solid #CCCCCC;
+	color:#20435C;
+	font-family:sans-serif;
+	font-weight:normal;
+	padding:3px 10px;
+}
+H1 {
+	text-align: center;
+	font-size: 200%;
+}
+H2 {
+	font-size: 160%;
+}
+H3 {
+	font-size: 125%;
+}
+H4 {
+	font-size: 110%;
+}
+H5 {
+	font-size: 100%;
+}
+
+code {
+	font-family: Courier;
+	padding: 0px 4px;
+	margin: 2px;
+	background-color: #eee;
+	border: 1px solid #ddd;
+}
+pre {
+	border: 1px solid #CCCCCC;
+	background-color: #f5f5f5;
+	padding:10px;
+}
+pre.code {
+	background-color:#EEFFCC;
+	border:1px solid #AACC99;
+}
+.typ{color:#0E84B5;font-weight:bold;}
+.kwd{color:#072;font-weight:bold;}
+.cmt{color:#408090;}
+.str{color:#4C70A0;}
+.char{color:#4C70A0;}
+.num{color:#285;}
+.cpp{color:#c97332;}
+.fnm{color:#A20;}
+.sym{color:#c97332;font-weight:bold;}
+.dim{padding:0px 5px;background-color:#CCF;color:#333;}
