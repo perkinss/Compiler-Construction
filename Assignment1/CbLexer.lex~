@@ -1,4 +1,4 @@
-%namespace FrontEnd
+%namespace LexScanner
 %tokentype Tokens
 
 %{
