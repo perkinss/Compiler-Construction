@@ -1,4 +1,4 @@
-// Parser Conflict Information for grammar file "CbParser.y - 29/05/2014 12:31:30 PM"
+// Parser Conflict Information for grammar file "CbParser.y - 01/06/2014 10:41:26 AM"
 
 Shift/Reduce conflict on symbol "Kwd_public", parser will shift
  Reduce 16:	FieldDeclList -> /* empty */

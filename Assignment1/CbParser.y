@@ -5,9 +5,6 @@
 // classes to contain methods (other than Main).
 // Other language features may be missing too.
 
-%namespace  FrontEnd
-%tokentype  Tokens
-
 // All tokens which can be used as operators in expressions
 // they are ordered by precedence level (lowest first)
 %right      '='
