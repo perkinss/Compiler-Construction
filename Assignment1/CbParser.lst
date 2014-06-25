@@ -1,88 +1,274 @@
 
 // ==========================================================================
-//  GPLEX error listing for lex source file <CbParser.l>
+//  GPLEX error listing for lex source file <CbParser.y>
 // ==========================================================================
 //  Version:  1.2.1
-//  Machine:  Catherby
-//  DateTime: 28/05/2014 9:29:40 PM
-//  UserName: tlavallee
+//  Machine:  andromeda.local
+//  DateTime: 01/06/2014 12:13:45 PM
+//  UserName: sperkins
 // ==========================================================================
 
 
-%namespace LexScanner
-%tokentype Tokens
+/* CbParser.y */
+// Error: Too many errors, abandoning
+// Error: Too many errors
+// ----------------------------------
+
+// The grammar shown in this file is INCOMPLETE!!
+// It does not support class inheritance, it does not permit
+// classes to contain methods (other than Main).
+// Other language features may be missing too.
+
+// All tokens which can be used as operators in expressions
+// they are ordered by precedence level (lowest first)
+%right      '='
+//^^^^------^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%left       OROR
+%left       ANDAND
+//^^^-------^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%nonassoc   EQEQ NOTEQ
+//^^^^^^^---^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%nonassoc   '>' GTEQ '<' LTEQ
+//^^^^^^^---^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%left       '+' '-'
+//^^^-------^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%left       '*' '/' '%'
+//^^^-------^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%left       UMINUS
+//^^^-------^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+
+// All other named tokens (i.e. the single character tokens are omitted)
+// The order in which they are listed here does not matter.
+%token      Kwd_using Kwd_class            	// Sections
+//^^^^------^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%token      Kwd_public				// Scope
+//^^^^------^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%token      Kwd_const Kwd_override Kwd_static		// Modifiers
+//^^^^------^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%token      Kwd_break Kwd_return Kwd_else Kwd_if Kwd_while	// Flow control
+//^^^^------^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%token      Kwd_void Kwd_int Kwd_char Kwd_string       	// Types
+//^^^^------^^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// ----------------------------------------
+%token      Kwd_new Kwd_out	// Not sure if needed
+//^^^^------^^
+// Error: Unknown LEX tag name
+// Error: Illegal character in this context
+// Error: Illegal character in this context
+// Error: Too many errors, abandoning
+// ----------------------------------------
+%token      PLUSPLUS MINUSMINUS Ident Number StringConst
+
+%start Program
 
 %{
-  public int lineNum = 1;
-
-  public int LineNumber { get{ return lineNum; } }
-
-  public override void yyerror( string msg, params object[] args ) {
-    Console.WriteLine("{0}: ", lineNum);
-    if (args == null || args.Length == 0) {
-      Console.WriteLine("{0}", msg);
-    }
-    else {
-      Console.WriteLine(msg, args);
-    }
+  public void yyerror( string format, params Object[] args ) {
+    Console.Write("{0}: ", 99);//LineNumber);
+    Console.WriteLine(format, args);
   }
-
-  public void yyerror( int lineNum, string msg, params object[] args ) {
-    Console.WriteLine("{0}: {1}", msg, args);
-  }
-
 %}
 
-space [ \t]
-opchar [=><+\-*/%]
-
-%%
-{space}          {}
-"||"             {last_token_text=yytext;return (int)Tokens.OROR;}
-"&&"             {last_token_text=yytext;return (int)Tokens.ANDAND;}
-"=="             {last_token_text=yytext;return (int)Tokens.EQEQ;}
-"!="             {last_token_text=yytext;return (int)Tokens.NOTEQ;}
-">="             {last_token_text=yytext;return (int)Tokens.GTEQ;}
-"<="             {last_token_text=yytext;return (int)Tokens.LTEQ;}
-//^^
-// Warning: This pattern always overrides ""<="" 
-// ----------------------------------------------
-"<="             {last_token_text=yytext;return (int)Tokens.LTEQ;}
-//^^
-// Warning: This pattern always overridden by ""<="" 
-// --------------------------------------------------
-"using"          {last_token_text=yytext;return (int)Tokens.Kwd_using;}
-"class"          {last_token_text=yytext;return (int)Tokens.Kwd_class;}
-"public"         {last_token_text=yytext;return (int)Tokens.Kwd_public;}
-"const"          {last_token_text=yytext;return (int)Tokens.Kwd_const;}
-"override"       {last_token_text=yytext;return (int)Tokens.Kwd_override;}
-"static"         {last_token_text=yytext;return (int)Tokens.Kwd_static;}
-"break"          {last_token_text=yytext;return (int)Tokens.Kwd_break;}
-"return"         {last_token_text=yytext;return (int)Tokens.Kwd_return;}
-"else"           {last_token_text=yytext;return (int)Tokens.Kwd_else;}
-"if"             {last_token_text=yytext;return (int)Tokens.Kwd_if;}
-"while"          {last_token_text=yytext;return (int)Tokens.Kwd_while;}
-"void"           {last_token_text=yytext;return (int)Tokens.Kwd_void;}
-"int"            {last_token_text=yytext;return (int)Tokens.Kwd_int;}
-"char"           {last_token_text=yytext;return (int)Tokens.Kwd_char;}
-"string"         {last_token_text=yytext;return (int)Tokens.Kwd_string;}
-"new"            {last_token_text=yytext;return (int)Tokens.Kwd_new;}
-"out"            {last_token_text=yytext;return (int)Tokens.Kwd_out;}
-"++"             {last_token_text=yytext;return (int)Tokens.PLUSPLUS;}
-"--"             {last_token_text=yytext;return (int)Tokens.MINUSMINUS;}
-
-[a-zA-Z][a-zA-Z_0-9]*           {last_token_text=yytext;return (int)Tokens.Ident;}
-0|[1-9][0-9]*    {last_token_text=yytext;return (int)Tokens.Number;}
-"\""[.]*"\""     {last_token_text=yytext;return (int)Tokens.StringConst;}
-{opchar}         {return (int)(yytext[0]);}
-"\n"             {return (int)'\n';}
-"\r\n"           {return (int)'\n';}
-
-.                { yyerror("illegal character ({0})", yytext); }
-
 %%
 
-public string last_token_text = "";
+/* *************************************************************************
+   *                                                                       *
+   *         PRODUCTION RULES AND ASSOCIATED SEMANTIC ACTIONS              *
+   *                                                                       *
+   ************************************************************************* */
+
+Program:        UsingList ClassList
+        ;
+
+UsingList:      /* empty */
+        |       Kwd_using Ident ';' UsingList
+        ;
+
+ClassList:	    ClassList ClassDecl
+		|		ClassDecl
+		;
+
+ClassDecl:		Kwd_class Ident '{'  DeclList  '}'
+		;
+
+DeclList:       DeclList ConstDecl
+        |       DeclList MethodDecl
+        |       DeclList FieldDeclList
+        |       /* empty */
+        ;
+
+ConstDecl:      Kwd_public Kwd_const Type Ident '=' InitVal ';'
+        ;
+
+InitVal:        Number
+        |       StringConst
+        ;
+
+FieldDeclList:  FieldDeclList FieldDecl
+        |       /* empty */
+        ;
+
+FieldDecl:      Kwd_public Type IdentList ';'
+        ;
+
+IdentList:      IdentList ',' Ident
+        |       Ident
+        ;
+
+MethodDecl:     Kwd_public Kwd_static Kwd_void Ident '(' OptFormals ')' Block
+        ;
+
+OptFormals:     /* empty */
+        |       FormalPars
+        ;
+
+FormalPars:     FormalDecl
+        |       FormalPars ',' FormalDecl
+        ;
+
+FormalDecl:     Type Ident
+        ;
+
+Type:           TypeName
+        |       TypeName '[' ']'
+        ;
+
+TypeName:       Ident
+        |       Kwd_int
+        |       Kwd_string
+        ;
+
+Statement:      Designator '=' Expr ';'
+        |       Designator '(' OptActuals ')' ';'
+        |       Designator PLUSPLUS ';'
+        |       Designator MINUSMINUS ';'
+        |       Kwd_if '(' Expr ')' Statement OptElsePart
+        |       Kwd_while '(' Expr ')' Statement
+        |       Kwd_break ';'
+        |       Kwd_return ';'
+        |       Kwd_return Expr ';'
+        |       Block
+        |       ';'
+        ;
+
+OptActuals:     /* empty */
+        |       ActPars
+        ;
+
+ActPars:        ActPars ',' Expr
+        |       Expr
+        ;
+
+OptElsePart:    Kwd_else Statement
+        |       /* empty */
+        ;
+
+Block:          '{' DeclsAndStmts '}'
+        ;
+
+LocalDecl:      Ident IdentList ';'
+        |       Ident '[' ']' IdentList ';'
+        ;
+
+DeclsAndStmts:   /* empty */
+        |       DeclsAndStmts Statement
+        |       DeclsAndStmts LocalDecl
+        ;
+
+Expr:           Expr OROR Expr
+        |       Expr ANDAND Expr
+        |       Expr EQEQ Expr
+        |       Expr NOTEQ Expr
+        |       Expr LTEQ Expr
+        |       Expr '<' Expr
+        |       Expr GTEQ Expr
+        |       Expr '>' Expr
+        |       Expr '+' Expr
+        |       Expr '-' Expr
+        |       Expr '*' Expr
+        |       Expr '/' Expr
+        |       Expr '%' Expr
+        |       '-' Expr %prec UMINUS
+        |       Designator
+        |       Designator '(' OptActuals ')'
+        |       Number
+        |       StringConst
+        |       StringConst '.' Ident // Ident must be "Length"
+        |       Kwd_new Ident '(' ')'
+        |       Kwd_new Ident '[' Expr ']'
+        |       '(' Expr ')'
+        ;
+
+Designator:     Ident Qualifiers
+        ;
+
+Qualifiers:     '.' Ident Qualifiers
+        |       '[' Expr ']' Qualifiers
+        |       /* empty */
+        ;
+
+%%
+
+
+
 
 // ==========================================================================
 

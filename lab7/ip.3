@@ -1,0 +1,16 @@
+fun foo(a:int,b:int) : int {
+	var c = a + b;
+	var d = 0;
+	if (c < 100) {
+	  d = c - 50;
+	}
+	else {
+	  d = c + 50;
+	}
+	return d - 1;
+}
+
+fun main() : void {
+	foo(3,4);
+}
+

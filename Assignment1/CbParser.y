@@ -1,13 +1,9 @@
-%using System.IO;
 /* CbParser.y */
 
 // The grammar shown in this file is INCOMPLETE!!
 // It does not support class inheritance, it does not permit
 // classes to contain methods (other than Main).
 // Other language features may be missing too.
-
-%namespace  FrontEnd
-%tokentype  Tokens
 
 // All tokens which can be used as operators in expressions
 // they are ordered by precedence level (lowest first)
@@ -179,48 +175,6 @@ Qualifiers:     '.' Ident Qualifiers
 
 %%
 
-Stack<string> id_stack = new Stack<string>();
 
-void push_id() {
-	string t = ((FrontEnd.Scanner)Scanner).last_token_text;
-	id_stack.Push(t);
-}
-string pop_id() {
-	return id_stack.Pop();
-}
 
-string token_text() {
-	return ((FrontEnd.Scanner)Scanner).last_token_text;
-}
-
-void writeln() {
-	writeln(null,null);
-}
-void writeln(string opcode) {
-	writeln(opcode,null);
-}
-
-void writeln(string opcode, string value) {
-	if (opcode != null) {
-		System.Console.Write(opcode);
-		if (value != null) {
-			System.Console.Write(' '+value);
-		}
-	}
-	System.Console.Write('\n');
-}
-
-// The parser needs a constructor
-Parser() : base(null) { }
-
-static void Main(string[] args)
-{
-	Parser parser = new Parser();
-
-	FileStream file = new FileStream(args[0], FileMode.Open);
-	parser.Scanner = new FrontEnd.Scanner(file);
-	System.Console.WriteLine("File: " + args[0]);
-
-	parser.Parse();
-}
 
